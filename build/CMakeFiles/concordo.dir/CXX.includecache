@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+string
+-
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
+string
+-
+vector
+-
+channel.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/sistema.h
+vector
+-
+user.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/user.h
+server.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/user.h
+string
+-
+../include/server.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/sistema.cpp
+../include/sistema.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/sistema.h
+
