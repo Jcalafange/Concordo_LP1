@@ -6,8 +6,20 @@
 
 #IncludeRegexTransform: 
 
+../include/message.h
+string
+-
+chrono
+-
+
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
 string
+-
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
+string
+-
+chrono
 -
 
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
@@ -26,13 +38,61 @@ user.h
 server.h
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
 
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/textChannel.h
+channel.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+message.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
+vector
+-
+
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/user.h
 string
 -
 ../include/server.h
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
 
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/voiceChannel.h
+channel.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+message.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/channel.cpp
+../include/channel.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/main.cpp
+iostream
+-
+sstream
+-
+../include/sistema.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/sistema.h
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/message.cpp
+../include/message.h
+-
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/server.cpp
+../include/server.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
+
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/sistema.cpp
 ../include/sistema.h
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/sistema.h
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/textChannel.cpp
+../include/textChannel.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/textChannel.h
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/user.cpp
+../include/user.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/user.h
+../include/server.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/voiceChannel.cpp
+../include/voiceChannel.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/voiceChannel.h
 
