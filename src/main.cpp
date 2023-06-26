@@ -29,7 +29,6 @@ int main() {
         } else if (sistema.isLoggedIn()) {
             if (command == "disconnect") {
                 std::cout << sistema.disconnect() << std::endl;
-                break;
             } else if (command == "create-server") {
                 std::string serverName;
                 iss >> serverName;
