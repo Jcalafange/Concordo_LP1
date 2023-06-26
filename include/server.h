@@ -6,6 +6,7 @@
         #ifndef SERVER_H
         #define SERVER_H
 
+        #include <algorithm>
         #include <string>
         #include <vector>
         #include "channel.h"
@@ -84,6 +85,12 @@
             * @param userId O ID do usuário a ser adicionado.
             */
             void addParticipant(int userId);
+
+            /**
+            * @brief remove um participante ao servidor.
+            * @param userId O ID do usuário a ser removido.
+            */
+            void removeParticipant(int userId);
 
             /**
             * @brief Verifica se um usuário é participante do servidor.

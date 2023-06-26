@@ -7,6 +7,7 @@
 #define SISTEMA_H
 
 #include <vector>
+#include <memory>
 #include "user.h"
 #include "server.h"
 
