@@ -189,34 +189,33 @@ std::string Sistema::removeServer(const std::string& serverName) {
 }
 
 std::string Sistema::enterServer(const std::string& serverName, const std::string& inviteCode) {
-    // Verifica se o usuário está logado
     if (!currentUser) {
         return "Você precisa estar logado para entrar em um servidor.";
     }
 
-    // Procura o servidor pelo nome
+    Server* foundServer = nullptr;
+
     for (auto& server : servers) {
         if (server.getName() == serverName) {
-            // Verifica se o usuário é o dono do servidor
-            if (server.getOwnerUserId() == currentUser->getId()) {
-                server.addParticipant(currentUser->getId());
-                currentUser->setCurrentServer(&server);
-                return "Entrou no servidor com sucesso.";
-            } else if (server.getInviteCode().empty()) {
-                server.addParticipant(currentUser->getId());
-                currentUser->setCurrentServer(&server);
-                return "Entrou no servidor com sucesso.";
+            if (server.getOwnerUserId() == currentUser->getId() || server.getInviteCode().empty()) {
+                foundServer = &server;
+                break;
             } else if (inviteCode == server.getInviteCode()) {
-                server.addParticipant(currentUser->getId());
-                currentUser->setCurrentServer(&server);
-                return "Entrou no servidor com sucesso.";
+                foundServer = &server;
+                break;
             } else {
                 return "Servidor requer código de convite válido.";
             }
         }
     }
 
-    return "Servidor '" + serverName + "' não encontrado.";
+    if (foundServer) {
+        foundServer->addParticipant(currentUser->getId());
+        currentServer = foundServer;
+        return "Entrou no servidor com sucesso.";
+    } else {
+        return "Servidor '" + serverName + "' não encontrado.";
+    }
 }
 
 
@@ -224,6 +223,7 @@ std::string Sistema::enterServer(const std::string& serverName, const std::strin
 std::string Sistema::leaveServer() {
     if (currentServer) {
         std::string serverName = currentServer->getName();
+        currentServer->removeParticipant(currentUser->getId()); // Remova o usuário da lista de participantes do servidor
         currentServer = nullptr;
         currentChannel = nullptr;
         return "Saindo do servidor '" + serverName + "'";

@@ -31,6 +31,16 @@ void Server::addParticipant(int userId) {
     participantIDs.push_back(userId);
 }
 
+void Server::removeParticipant(int userId) {
+    // Procura o ID do usuário na lista de participantes
+    auto it = std::find(participantIDs.begin(), participantIDs.end(), userId);
+    
+    // Remove o participante se encontrado
+    if (it != participantIDs.end()) {
+        participantIDs.erase(it);
+    }
+}
+
 std::vector<int> Server::getParticipantIDs() const {
     return participantIDs;
 }
