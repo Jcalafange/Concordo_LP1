@@ -1,0 +1,26 @@
+create-user joaovitor@gmail.com pipoca123 joaovitor
+create-user miguel@gmail.com pipoca321 miguel
+login joaovitor@gmail.com pipoca123
+create-server pipocaDoce
+enter-server pipocaDoce
+create-channel cinema texto
+list-channels
+enter-channel cinema
+send-message
+boa tarde!!!
+list-messages
+list-participants
+disconnect
+login miguel@gmail.com pipoca321
+list-servers
+enter-server pipocaDoce
+list-participants
+leave-server pipocaDoce
+list-servers
+remove-server pipocaDoce
+disconnect
+login joaovitor@gmail.com pipoca123
+remove-server pipocaDoce
+list-servers
+disconnect
+quit

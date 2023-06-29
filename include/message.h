@@ -24,8 +24,9 @@ public:
      * @brief Construtor da classe Message.
      * @param content O conteúdo da mensagem.
      * @param timestamp O timestamp (tempo) da mensagem.
+     * @param sendername O nome do remetente da mensagem.
      */
-    Message(const std::string& content, const std::chrono::system_clock::time_point& timestamp);
+    Message(const std::string& content, const std::chrono::system_clock::time_point& timestamp, const std::string& senderName);
 
     /**
      * @brief Obtém o conteúdo da mensagem.
@@ -39,9 +40,23 @@ public:
      */
     std::chrono::system_clock::time_point getTimestamp() const;
 
+    /**
+     *@brief obtém o id do usuario
+     *@return o id do usuario
+     */
+    int getUserId() const;
+
+    /**
+     *@brief obtém o remetente da mensagem
+     *@return o remetente da mensagem
+     */
+    std::string getSenderName() const;
+
 private:
     std::string content; /**< O conteúdo da mensagem. */
     std::chrono::system_clock::time_point timestamp; /**< O timestamp da mensagem. */
+    int userId;
+    std::string senderName;
 };
 
 #endif

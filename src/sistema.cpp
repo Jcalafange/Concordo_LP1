@@ -35,6 +35,8 @@ Server* Sistema::getServerByName(const std::string& serverName) {
     return nullptr;
 }
 
+Server* Sistema::getCurrentServer() const { return currentServer; }
+
 User* Sistema::getCurrentUser() const { return currentUser; }
 
 void Sistema::setCurrentUser(User* user) { currentUser = user;}
@@ -44,6 +46,7 @@ Channel* Sistema::getCurrentChannel() const { return currentChannel; }
 void Sistema::setCurrentChannel(Channel* channel) { currentChannel = channel;}
 
 std::string Sistema::createUser(const std::string& email, const std::string& password, const std::string& name){
+    if(!isLoggedIn()){
     //verifica se ja existe um usuario com o mesmo email
     for (const auto& user : users) {
         if (user.getEmail() == email) {
@@ -61,10 +64,12 @@ std::string Sistema::createUser(const std::string& email, const std::string& pas
     users.push_back(newUser);
 
     return "Usuário criado com sucesso. ID do usuário: " + std::to_string(nextId);
-     
+    }else{ return "Disconect-se para criar um novo usuário";}
+
 }
 
 std::string Sistema::login(const std::string& email, const std::string& password){
+    if(!isLoggedIn()){
     // verifica se ja existe um usuario com o mesmo email e senha
     for (auto& user : users){
         if (user.getEmail() == email && user.getPassword() == password){
@@ -74,10 +79,11 @@ std::string Sistema::login(const std::string& email, const std::string& password
     }
 
     return "Erro: Email ou senha inválidos.";
+    }else{ return "Erro: você ja esta logado em uma conta."; }
 }
 
 std::string Sistema::quit(){
-    // limpa os dados do usuario atual
+    // limpa os dados do usuario atual  
     currentUser = nullptr;
     currentServer = nullptr;
     currentChannel = nullptr;
@@ -218,7 +224,41 @@ std::string Sistema::enterServer(const std::string& serverName, const std::strin
     }
 }
 
+std::string Sistema::enterChannel(const std::string& channelName) {
+    if (!isLoggedIn()) {
+        return "Faça o login para acessar os comandos!";
+    }
 
+    if (currentServer == nullptr) {
+        return "Não está em nenhum servidor no momento";
+    }
+
+    // Procura o canal com o nome especificado
+    for (Channel* channel : currentServer->getChannels()) {
+        if (channel->getName() == channelName) {
+            // Atualiza o canal atual
+            currentChannel = channel;
+            return "Entrou no canal '" + channelName + "'";
+        }
+    }
+
+    return "Canal '" + channelName + "' não existe";
+}
+
+std::string Sistema::leaveChannel() {
+    if (!isLoggedIn()) {
+        return "Faça o login para acessar os comandos!";
+    }
+
+    if (currentChannel == nullptr) {
+        return "Não está em nenhum canal no momento";
+    }
+
+    // Seta o canal atual como nullptr para indicar que não está em nenhum canal
+    currentChannel = nullptr;
+
+    return "Saindo do canal";
+}
 
 std::string Sistema::leaveServer() {
     if (currentServer) {
@@ -250,5 +290,61 @@ std::string Sistema::listParticipants() const {
     }
 }
 
+std::string Sistema::sendMessage(const std::string& content) {
+    if (!isLoggedIn()) {
+        return "Faça o login para acessar os comandos!";
+    }
+
+    if (currentChannel == nullptr) {
+        return "Não está em nenhum canal no momento";
+    }
+
+    // Obtém o ID do usuário logado
+    std::string senderName = currentUser->getName();
+
+    // Cria a mensagem com o conteúdo digitado, data/hora atual e ID do usuário
+    Message message(content, std::chrono::system_clock::now(), senderName);
+
+    // Adiciona a mensagem ao canal atual
+    currentChannel->addMessage(message);
+
+    return "Mensagem enviada com sucesso";
+}
+
+void Sistema::listMessages() const {
+    if (!isLoggedIn()) {
+        std::cout << "Nenhum usuário logado." << std::endl;
+        return;
+    }
+
+    if (!currentChannel) {
+        std::cout << "Nenhum canal selecionado." << std::endl;
+        return;
+    }
+
+    std::vector<Message> messages;
+
+    if (currentChannel->getType() == "texto") {
+        TextChannel* textChannel = dynamic_cast<TextChannel*>(currentChannel);
+        if (textChannel) {
+            messages = textChannel->getMessages();
+        }
+    } else if (currentChannel->getType() == "voz") {
+        VoiceChannel* voiceChannel = dynamic_cast<VoiceChannel*>(currentChannel);
+        if (voiceChannel) {
+            messages.push_back(voiceChannel->getLastMessage());
+        }
+    }
+
+    if (messages.empty()) {
+        std::cout << "Sem mensagens para exibir." << std::endl;
+        return;
+    }
+
+    for (const Message& message : messages) {
+        std::time_t timestamp = std::chrono::system_clock::to_time_t(message.getTimestamp());
+        std::cout << message.getSenderName() << "<" << std::put_time(std::localtime(&timestamp), "%d/%m/%Y - %H:%M") << ">: " << message.getContent() << std::endl;
+    }
+}
 
 

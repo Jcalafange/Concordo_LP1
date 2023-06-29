@@ -9,3 +9,7 @@ void TextChannel::addMessage(const Message& message) {
 std::vector<Message> TextChannel::getMessages() const {
     return messages;
 }
+
+std::string TextChannel::getType() const {
+    return "texto";
+}

@@ -10,6 +10,8 @@
 #include <memory>
 #include "user.h"
 #include "server.h"
+#include <iomanip> 
+#include <ctime>   
 
 /**
  * @class Sistema
@@ -180,6 +182,25 @@ public:
      * @return Uma mensagem com a lista de participantes ou uma mensagem de erro.
      */
     std::string listParticipants() const;
+
+    /**
+     *@brief entra em um canal
+     *@param channelName canal a ser entrado
+     */
+    std::string enterChannel(const std::string& channelName);
+
+    /**
+     *@brief disconecta-se do canal atua.
+     */
+    std::string leaveChannel();
+
+    /**
+     *
+     */
+    std::string sendMessage(const std::string& messageContent);
+    
+    void listMessages() const;
+
 
 private:
     std::vector<User> users; /**< Vetor de usuários do sistema. */
