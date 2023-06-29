@@ -23,6 +23,46 @@ void Server::addChannel(Channel* channel) {
     channels.push_back(channel);
 }
 
+void Server::createChannel(const std::string& name, const std::string& type) {
+    // Verificar se já existe um canal com o mesmo nome e tipo
+    for (Channel* channel : channels) {
+        if (channel->getName() == name && channel->getType() == type) {
+            std::cout << "Um canal com o mesmo nome e tipo já existe no servidor." << std::endl;
+            return;
+        }
+    }
+
+    // Criar o canal correspondente ao tipo informado
+    if (type == "texto") {
+        TextChannel* channel = new TextChannel(name);
+        addChannel(channel);
+        std::cout << "Canal de texto '" << name << "' criado." << std::endl;
+    } else if (type == "voz") {
+        VoiceChannel* channel = new VoiceChannel(name);
+        addChannel(channel);
+        std::cout << "Canal de voz '" << name << "' criado." << std::endl;
+    } else {
+        std::cout << "Tipo de canal inválido. O tipo deve ser 'texto' ou 'voz'." << std::endl;
+    }
+}
+
+void Server::listChannels() const {
+    std::cout << "# Canais de texto:" << std::endl;
+    for (Channel* channel : channels) {
+        if (channel->getType() == "texto") {
+            std::cout << channel->getName() << std::endl;
+        }
+    }
+
+    std::cout << "# Canais de áudio:" << std::endl;
+    for (Channel* channel : channels) {
+        if (channel->getType() == "voz") {
+            std::cout << channel->getName() << std::endl;
+        }
+    }
+}
+
+
 std::vector<Channel*> Server::getChannels() const {
     return channels;
 }

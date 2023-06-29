@@ -9,8 +9,20 @@
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
 string
 -
+vector
+-
+message.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
+string
+-
+chrono
+-
 
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
+iostream
+-
 algorithm
 -
 string
@@ -19,6 +31,10 @@ vector
 -
 channel.h
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+textchannel.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/textchannel.h
+voicechannel.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/voicechannel.h
 
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/sistema.h
 vector
@@ -29,6 +45,18 @@ user.h
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/user.h
 server.h
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
+iomanip
+-
+ctime
+-
+
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/textchannel.h
+channel.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+message.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
+vector
+-
 
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/user.h
 string
@@ -36,13 +64,11 @@ string
 ../include/server.h
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
 
-/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/main.cpp
-iostream
--
-sstream
--
-../include/sistema.h
-/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/sistema.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/voicechannel.h
+channel.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+message.h
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
 
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/sistema.cpp
 ../include/sistema.h

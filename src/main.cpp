@@ -2,6 +2,7 @@
 #include <sstream>
 #include "../include/sistema.h"
 
+
 int main() {
     Sistema sistema;
     std::string input;
@@ -57,7 +58,33 @@ int main() {
                 std::cout << sistema.leaveServer() << std::endl;
             } else if (command == "list-participants") {
                 std::cout << sistema.listParticipants() << std::endl;
-            } else {
+            } else if (command == "create-channel") {
+                if (sistema.getCurrentServer() != nullptr) {
+                    std::string channelName, channelType;
+                    iss >> channelName >> channelType;
+                    sistema.getCurrentServer()->createChannel(channelName, channelType);
+                } else {
+                    std::cout << "Nenhum servidor selecionado." << std::endl;
+                }
+            } else if (command == "list-channels") {
+                if (sistema.getCurrentServer() != nullptr) {
+                    sistema.getCurrentServer()->listChannels();
+                } else {
+                    std::cout << "Nenhum servidor selecionado." << std::endl;
+                }
+            }else if (command == "enter-channel") {
+                std::string channelName;
+                iss >> channelName;
+                std::cout << sistema.enterChannel(channelName) << std::endl;
+            }else if (command == "leave-channel") {
+                std::cout << sistema.leaveChannel() << std::endl;
+            }else if (command == "send-message") {
+                std::string content;
+                std::getline(std::cin, content);
+                std::cout << sistema.sendMessage(content) << std::endl;
+            }else if (command == "list-messages") {
+                sistema.listMessages();
+            }else {
                 std::cout << "Comando inválido!" << std::endl;
             }
         } else {

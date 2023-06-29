@@ -3,25 +3,35 @@
 
 CMakeFiles/concordo.dir/src/channel.cpp.o
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/channel.cpp
 CMakeFiles/concordo.dir/src/main.cpp.o
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/sistema.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/textchannel.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/user.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/voicechannel.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/main.cpp
 CMakeFiles/concordo.dir/src/message.cpp.o
  ../include/message.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/message.cpp
 CMakeFiles/concordo.dir/src/server.cpp.o
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/textchannel.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/voicechannel.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/server.cpp
 CMakeFiles/concordo.dir/src/sistema.cpp.o
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/sistema.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/textchannel.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/user.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/voicechannel.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/sistema.cpp
 CMakeFiles/concordo.dir/src/textChannel.cpp.o
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
@@ -30,8 +40,11 @@ CMakeFiles/concordo.dir/src/textChannel.cpp.o
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/textChannel.cpp
 CMakeFiles/concordo.dir/src/user.cpp.o
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/server.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/textchannel.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/user.h
+ /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/voicechannel.h
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/user.cpp
 CMakeFiles/concordo.dir/src/voiceChannel.cpp.o
  /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/channel.h

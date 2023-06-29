@@ -33,6 +33,12 @@ public:
      */
     Message getLastMessage() const;
 
+    /**
+     * @brief Obtém o tipo canal de voz.
+     * @return o tipo canal de voz
+     */
+    std::string getType() const override;
+
 private:
     Message lastMessage; /**< A última mensagem do canal de voz. */
 };

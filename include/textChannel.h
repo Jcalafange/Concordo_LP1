@@ -34,6 +34,12 @@ public:
      */
     std::vector<Message> getMessages() const;
 
+    /**
+     * @brief Obtém o tipo do canal de texto.
+     * @return o tipo canal de texto.
+     */
+    std::string getType() const override;
+
 private:
     std::vector<Message> messages; /**< Vetor de mensagens do canal de texto. */
 };

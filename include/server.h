@@ -6,10 +6,14 @@
         #ifndef SERVER_H
         #define SERVER_H
 
+        #include <iostream>
         #include <algorithm>
         #include <string>
         #include <vector>
         #include "channel.h"
+        #include "textchannel.h"
+        #include "voicechannel.h"
+
 
         /**
         * @class Server
@@ -55,6 +59,17 @@
             * @param channel O canal a ser adicionado.
             */
             void addChannel(Channel* channel);
+
+            /**
+            * @brief cria um canal ao serivor com suas caracteristicas
+            * @param channel O canal a ser adicionado.
+            */
+            void createChannel(const std::string& name, const std::string& type);
+
+            /**
+            *@brief lista os canais dentro de um servidor
+            */
+            void listChannels() const;
 
             /**
             * @brief Obtém os canais do servidor.

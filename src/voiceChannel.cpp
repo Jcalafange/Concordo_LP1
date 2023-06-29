@@ -9,3 +9,7 @@ void VoiceChannel::addMessage(const Message& message) {
 Message VoiceChannel::getLastMessage() const {
     return lastMessage;
 }
+
+std::string VoiceChannel::getType() const {
+    return "voz";
+}
