@@ -58,7 +58,7 @@ A seguir estão os comandos disponíveis no sistema:
 - `list-channels`: Lista os canais do servidor atual.
 - `enter-channel <nome>`: Entra no canal especificado do servidor atual.
 - `leave-channel`: Sai do canal atual.
-- `send-message "<mensagem>"`: Envia uma mensagem no canal atual. OBSERVAÇÃO : send-message e <mensagem> devem ser mandados separadamente.
+- `send-message "<mensagem>"`: Envia uma mensagem no canal atual. OBSERVAÇÃO : send-message e `<mensagem>` devem ser mandados separadamente.
 - `list-messages`: Lista as mensagens do canal atual.
 ## Autore
 
