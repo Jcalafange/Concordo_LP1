@@ -302,8 +302,11 @@ std::string Sistema::sendMessage(const std::string& content) {
     // Obtém o ID do usuário logado
     std::string senderName = currentUser->getName();
 
+    // Obtém o ID do usuário
+    int userId = currentUser->getId();
+
     // Cria a mensagem com o conteúdo digitado, data/hora atual e ID do usuário
-    Message message(content, std::chrono::system_clock::now(), senderName);
+    Message message(content, std::chrono::system_clock::now(), senderName , userId);
 
     // Adiciona a mensagem ao canal atual
     currentChannel->addMessage(message);
@@ -347,4 +350,253 @@ void Sistema::listMessages() const {
     }
 }
 
+void Sistema::salvarUsuarios() {
+    std::ofstream arquivo("usuarios.txt");
+    if (!arquivo.is_open()) {
+        std::cerr << "Erro ao abrir o arquivo de usuários." << std::endl;
+        return;
+    }
 
+    arquivo << users.size() << std::endl; 
+
+    for (const User& user : users) {
+        arquivo << user.getId() << std::endl;
+        arquivo << user.getName() << std::endl; 
+        arquivo << user.getEmail() << std::endl;
+        arquivo << user.getPassword() << std::endl;
+    }
+
+    arquivo.close();
+}
+
+void Sistema::salvarServidores() {
+    std::ofstream arquivo("servidores.txt");
+    if (!arquivo.is_open()) {
+        std::cerr << "Erro ao abrir o arquivo de servidores." << std::endl;
+        return;
+    }
+
+    arquivo << servers.size() << std::endl; // Escreve o total de servidores
+
+    for (const Server& server : servers) {
+        arquivo << server.getOwnerUserId() << std::endl; // Escreve o ID do dono do servidor
+        arquivo << server.getName() << std::endl; // Escreve o nome do servidor
+        arquivo << server.getDescription() << std::endl; // Escreve a descrição do servidor
+
+        if (server.isInviteOnly()) {
+            arquivo << server.getInviteCode() << std::endl; // Escreve o código de convite do servidor
+        } else {
+            arquivo << std::endl; // Se o servidor for aberto, escreve uma linha vazia
+        }
+
+        const std::vector<int>& participants = server.getParticipantIDs();
+        arquivo << participants.size() << std::endl; // Escreve o número de participantes do servidor
+
+        for (const int participantId : participants) {
+            arquivo << participantId << std::endl; // Escreve o ID do participante
+        }
+
+        const std::vector<Channel*>& channels = server.getChannels();
+        arquivo << channels.size() << std::endl; // Escreve o número de canais do servidor
+
+        for (const Channel* channel : channels) {
+            arquivo << channel->getName() << std::endl; // Escreve o nome do canal
+
+            if (const TextChannel* textChannel = dynamic_cast<const TextChannel*>(channel)) {
+                arquivo << "TEXTO" << std::endl; // Escreve o tipo do canal: TEXTO
+                const std::vector<Message>& messages = textChannel->getMessages();
+                arquivo << messages.size() << std::endl; // Escreve o número de mensagens do canal
+                for (const Message& message : messages) {
+                arquivo << message.getUserId() << std::endl; // Escreve o ID do usuário que escreveu a mensagem
+
+                // Converte o objeto time_point para uma string formatada
+                auto timestamp = message.getTimestamp();
+                std::time_t timestampAsTimeT = std::chrono::system_clock::to_time_t(timestamp);
+                std::tm* timestampLocalTime = std::localtime(&timestampAsTimeT);
+
+                std::stringstream timestampStringStream;
+                timestampStringStream << std::put_time(timestampLocalTime, "%d/%m/%Y");
+                std::string timestampString = timestampStringStream.str();
+
+                arquivo << timestampString << std::endl; // Escreve a data/hora da mensagem
+                arquivo << message.getContent() << std::endl; // Escreve o conteúdo da mensagem
+            }
+            } else if (const VoiceChannel* voiceChannel = dynamic_cast<const VoiceChannel*>(channel)) {
+            const Message& message = voiceChannel->getLastMessage();
+
+            arquivo << "1" << std::endl; // O canal de voz sempre terá 1 mensagem
+            arquivo << message.getUserId() << std::endl; // Escreve o ID do usuário que escreveu a mensagem
+
+            // Converte o objeto time_point para uma string formatada
+            auto timestamp = message.getTimestamp();
+            std::time_t timestampAsTimeT = std::chrono::system_clock::to_time_t(timestamp);
+            std::tm* timestampLocalTime = std::localtime(&timestampAsTimeT);
+
+            std::stringstream timestampStringStream;
+            timestampStringStream << std::put_time(timestampLocalTime, "%d/%m/%Y %H:%M:%S");
+            std::string timestampString = timestampStringStream.str();
+
+            arquivo << timestampString << std::endl; // Escreve a data/hora da mensagem
+            arquivo << message.getContent() << std::endl; // Escreve o conteúdo da mensagem
+            }
+        }
+    }
+
+    arquivo.close();
+}
+
+void Sistema::salvar() {
+    salvarUsuarios();
+    salvarServidores();
+}
+
+
+void Sistema::carregarUsuarios() {
+    std::ifstream arquivo("usuarios.txt");
+    if (!arquivo.is_open()) {
+        std::cerr << "Erro ao abrir o arquivo de usuários." << std::endl;
+        return;
+    }
+
+    int totalUsuarios;
+    arquivo >> totalUsuarios; // Lê o total de usuários do arquivo
+
+    for (int i = 0; i < totalUsuarios; i++) {
+        int id;
+        std::string nome, email, senha;
+
+        arquivo >> id; // Lê o ID do usuário
+        arquivo.ignore(); // Ignora o caractere de quebra de linha
+
+        std::getline(arquivo, nome); // Lê o nome do usuário
+        std::getline(arquivo, email); // Lê o email do usuário
+        std::getline(arquivo, senha); // Lê a senha do usuário
+
+        // Crie o objeto User com os dados lidos e adicione-o ao sistema
+        User user(id, nome, email, senha);
+        users.push_back(user);
+    }
+
+    arquivo.close();
+}
+
+
+void Sistema::carregarServidores() {
+    std::ifstream arquivo("servidores.txt");
+    if (!arquivo.is_open()) {
+        std::cerr << "Erro ao abrir o arquivo de servidores." << std::endl;
+        return;
+    }
+
+    int totalServidores;
+    arquivo >> totalServidores; // Lê o total de servidores do arquivo
+
+    for (int i = 0; i < totalServidores; i++) {
+        int ownerUserId;
+        std::string name, description, inviteCode;
+        std::vector<int> participantIDs;
+        std::vector<Channel*> channels;
+
+        arquivo >> ownerUserId; // Lê o ID do usuário dono do servidor
+        arquivo.ignore(); // Ignora o caractere de quebra de linha
+
+        std::getline(arquivo, name); // Lê o nome do servidor
+        std::getline(arquivo, description); // Lê a descrição do servidor
+
+        std::getline(arquivo, inviteCode); // Lê o código de convite do servidor
+        if (inviteCode.empty()) {
+            // O servidor é aberto, não há código de convite
+            inviteCode = ""; // Defina o código de convite como uma string vazia
+        }
+
+        int numParticipants;
+        arquivo >> numParticipants; // Lê o número de participantes do servidor
+        arquivo.ignore(); // Ignora o caractere de quebra de linha
+
+        for (int j = 0; j < numParticipants; j++) {
+            int participantId;
+            arquivo >> participantId; // Lê o ID do participante
+            arquivo.ignore(); // Ignora o caractere de quebra de linha
+            participantIDs.push_back(participantId);
+        }
+
+        int numChannels;
+        arquivo >> numChannels; // Lê o número de canais do servidor
+        arquivo.ignore(); // Ignora o caractere de quebra de linha
+
+        for (int j = 0; j < numChannels; j++) {
+            std::string channelName, channelType;
+            int numMessages;
+
+            std::getline(arquivo, channelName); // Lê o nome do canal
+            std::getline(arquivo, channelType); // Lê o tipo do canal
+
+            if (channelType == "TEXTO") {
+                TextChannel* textChannel = new TextChannel(channelName);
+
+                arquivo >> numMessages; // Lê o número de mensagens do canal
+                arquivo.ignore(); // Ignora o caractere de quebra de linha
+
+                for (int k = 0; k < numMessages; k++) {
+                    int userId;
+                    std::string timestampString, content;
+
+                    arquivo >> userId; // Lê o ID do usuário que escreveu a mensagem
+                    arquivo.ignore(); // Ignora o caractere de quebra de linha
+
+                    std::getline(arquivo, timestampString); // Lê a data/hora da mensagem
+                    std::getline(arquivo, content); // Lê o conteúdo da mensagem
+
+                    // Converte a string de data/hora para o tipo time_point
+                    std::tm timestampLocalTime = {};
+                    std::istringstream timestampStringStream(timestampString);
+                    timestampStringStream >> std::get_time(&timestampLocalTime, "%d/%m/%Y");
+                    auto timestamp = std::chrono::system_clock::from_time_t(std::mktime(&timestampLocalTime));
+
+                    // Cria a mensagem com os dados lidos e adiciona ao canal de texto
+                    Message message(content, timestamp, "", userId);
+                    textChannel->addMessage(message);
+                }
+
+                channels.push_back(textChannel);
+            } else if (channelType == "VOZ") {
+                VoiceChannel* voiceChannel = new VoiceChannel(channelName);
+
+                // Como o canal de voz só tem uma mensagem, podemos criar diretamente
+                int userId;
+                std::string timestampString, content;
+
+                arquivo >> userId; // Lê o ID do usuário que escreveu a mensagem
+                arquivo.ignore(); // Ignora o caractere de quebra de linha
+
+                std::getline(arquivo, timestampString); // Lê a data/hora da mensagem
+                std::getline(arquivo, content); // Lê o conteúdo da mensagem
+
+                // Converte a string de data/hora para o tipo time_point
+                std::tm timestampLocalTime = {};
+                std::istringstream timestampStringStream(timestampString);
+                timestampStringStream >> std::get_time(&timestampLocalTime, "%d/%m/%Y %H:%M:%S");
+                auto timestamp = std::chrono::system_clock::from_time_t(std::mktime(&timestampLocalTime));
+
+                // Cria a mensagem com os dados lidos e adiciona ao canal de voz
+                Message message(content, timestamp, "", userId);
+                voiceChannel->addMessage(message);
+
+                channels.push_back(voiceChannel);
+            }
+        }
+
+        // Cria o objeto Server com os dados lidos e adiciona-o ao sistema
+        Server server(ownerUserId, name, description, inviteCode);
+        server.setParticipantIDs(participantIDs);
+        server.setChannels(channels);
+        servers.push_back(server);
+    }
+
+    arquivo.close();
+}
+
+void Sistema::carregar() {
+    carregarUsuarios();
+    carregarServidores();
+}

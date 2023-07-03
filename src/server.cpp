@@ -67,6 +67,14 @@ std::vector<Channel*> Server::getChannels() const {
     return channels;
 }
 
+void Server::setParticipantIDs(const std::vector<int>& participantIDs) {
+    this->participantIDs = participantIDs;
+}
+
+void Server::setChannels(const std::vector<Channel*>& channels) {
+    this->channels = channels;
+}
+
 void Server::addParticipant(int userId) {
     participantIDs.push_back(userId);
 }
@@ -100,4 +108,8 @@ bool Server::isParticipant(int userId) const {
         }
     }
     return false;
+}
+
+bool Server::isInviteOnly() const {
+    return inviteCode.empty();
 }
