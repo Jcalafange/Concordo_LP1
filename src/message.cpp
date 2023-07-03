@@ -1,7 +1,7 @@
 #include <../include/message.h>
 
-Message::Message(const std::string& content, const std::chrono::system_clock::time_point& timestamp, const std::string& senderName)
-    : content(content), timestamp(timestamp), senderName(senderName) {}
+Message::Message(const std::string& content, const std::chrono::system_clock::time_point& timestamp, const std::string& senderName,const int userId)
+    : content(content), timestamp(timestamp), senderName(senderName), userId(userId) {}
 
 std::string Message::getContent() const {
     return content;

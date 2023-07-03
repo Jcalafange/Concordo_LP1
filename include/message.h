@@ -26,7 +26,7 @@ public:
      * @param timestamp O timestamp (tempo) da mensagem.
      * @param sendername O nome do remetente da mensagem.
      */
-    Message(const std::string& content, const std::chrono::system_clock::time_point& timestamp, const std::string& senderName);
+    Message(const std::string& content, const std::chrono::system_clock::time_point& timestamp, const std::string& senderName,const int userId);
 
     /**
      * @brief Obtém o conteúdo da mensagem.
@@ -55,8 +55,8 @@ public:
 private:
     std::string content; /**< O conteúdo da mensagem. */
     std::chrono::system_clock::time_point timestamp; /**< O timestamp da mensagem. */
-    int userId;
-    std::string senderName;
+    int userId; /**< O id do remetente da mensagem. */
+    std::string senderName; /**< O remetente da mensagem. */
 };
 
 #endif

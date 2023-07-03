@@ -12,6 +12,8 @@
 #include "server.h"
 #include <iomanip> 
 #include <ctime>   
+#include <fstream>
+
 
 /**
  * @class Sistema
@@ -195,13 +197,45 @@ public:
     std::string leaveChannel();
 
     /**
-     *
+     *@brief manda mensagem dentro de um canal
+     *@param messageContent contem o conteudo a ser mandado como mensagem
      */
     std::string sendMessage(const std::string& messageContent);
     
+    /**
+     *@brief lista as mensagens dentro de um canal
+     */
     void listMessages() const;
 
+    /**
+     *@brief salva os dados de usuarios existente dentro da execução em um arquivo txt
+     */
+    void salvarUsuarios();
 
+    /**
+     *@brief salva todos os dados atribuidos para os servidores em um arquivo txt
+     */
+    void salvarServidores();
+
+    /**
+    *@brief salva os dados dos usuarios e servirdores
+    */
+    void salvar();
+
+    /**
+    *@brief carregas os dados dos usuarios de instancias anteriores
+    */
+    void carregarUsuarios();
+
+    /**
+    *@brief carrega os dados dos servidores de instancias anteriores
+    */
+    void carregarServidores();
+
+    /**
+    *@brief carrega os dados dos usuarios e servirdores de instancias anteriores
+    */
+    void carregar();
 private:
     std::vector<User> users; /**< Vetor de usuários do sistema. */
     std::vector<Server> servers; /**< Vetor de servidores do sistema. */

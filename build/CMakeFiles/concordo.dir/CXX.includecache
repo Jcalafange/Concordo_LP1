@@ -49,6 +49,8 @@ iomanip
 -
 ctime
 -
+fstream
+-
 
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/textchannel.h
 channel.h
@@ -70,7 +72,11 @@ channel.h
 message.h
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/message.h
 
-/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/sistema.cpp
+/mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/src/main.cpp
+iostream
+-
+sstream
+-
 ../include/sistema.h
 /mnt/c/Users/jotav/Área de Trabalho/mySpace/cppSidemar/Concordo_LP1/include/sistema.h
 

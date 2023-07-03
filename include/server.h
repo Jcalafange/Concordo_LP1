@@ -76,6 +76,16 @@
             * @return Um vetor contendo os canais do servidor.
             */
             std::vector<Channel*> getChannels() const;
+            
+            /**
+            *@brief substitui os canais do servidor
+            */
+            void setChannels(const std::vector<Channel*>& channels);
+
+            /**
+            *@brief substitui os participantes do servidor
+            */
+            void setParticipantIDs(const std::vector<int>& participantIDs);
 
             /**
             * @brief Obtém os IDs dos participantes do servidor.
@@ -114,6 +124,10 @@
             */
             bool isParticipant(int userId) const;
 
+            /**
+             *@brief verifica se o server tem codigo de convite 
+             */
+            bool isInviteOnly() const;
         private:
             int ownerUserId; /**< O ID do usuário proprietário do servidor. */
             std::string name; /**< O nome do servidor. */

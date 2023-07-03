@@ -1,5 +1,7 @@
 create-user joaovitor@gmail.com pipoca123 joaovitor
 create-user miguel@gmail.com pipoca321 miguel
+create-user oi oi oi
+create-user ai ai ai
 login joaovitor@gmail.com pipoca123
 create-server pipocaDoce
 enter-server pipocaDoce
@@ -8,6 +10,10 @@ list-channels
 enter-channel cinema
 send-message
 boa tarde!!!
+send-message
+boa tarde!!!
+send-message
+boa tarde!!!!!
 list-messages
 list-participants
 disconnect
@@ -15,12 +21,8 @@ login miguel@gmail.com pipoca321
 list-servers
 enter-server pipocaDoce
 list-participants
-leave-server pipocaDoce
-list-servers
-remove-server pipocaDoce
 disconnect
 login joaovitor@gmail.com pipoca123
-remove-server pipocaDoce
 list-servers
 disconnect
 quit

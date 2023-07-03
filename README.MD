@@ -6,9 +6,9 @@ Concorda é um sistema de mensagens em grupo que permite aos usuários criar ser
 
 - Criação de usuário
 - Login e logout
-- Criação e remoção de servidores
+- Criação de servidores
 - Configuração de descrição e código de convite para servidores
-- Criação e remoção de canais de texto e voz
+- Criação de canais de texto e voz
 - Troca de mensagens de texto e voz em canais
 - Listagem de servidores e participantes
 - Entrada e saída de servidores
@@ -54,7 +54,12 @@ A seguir estão os comandos disponíveis no sistema:
 - `enter-server <nome>`: Entra no servidor especificado.
 - `leave-server`: Sai do servidor atual.
 - `list-participants`: Lista os participantes do servidor atual.
-
+- `create-channel <nome> <tipo>`: Cria um novo canal com o nome e tipo (TEXTO ou VOZ) fornecidos no servidor atual.
+- `list-channels`: Lista os canais do servidor atual.
+- `enter-channel <nome>`: Entra no canal especificado do servidor atual.
+- `leave-channel`: Sai do canal atual.
+- `send-message "<mensagem>"`: Envia uma mensagem no canal atual. OBSERVAÇÃO : send-message e <mensagem> devem ser mandados separadamente.
+- `list-messages`: Lista as mensagens do canal atual.
 ## Autore
 
 - [ João Vitor Cafalange de Carvalho Lopes](https://github.com/Jcalafange)
